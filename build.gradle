@@ -9,7 +9,7 @@ buildscript {
 
 
 apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'application'
@@ -135,7 +135,9 @@ task runInteractiveQueryApplicationTwo(type: JavaExec) {
 
 
 jar {
-  archiveName='bbejeck-kafka-streams-in-action-1.0-SNAPSHOT.jar'
+    archiveBaseName.set('bbejeck-kafka-streams-in-action')
+    archiveVersion.set('1.0-SNAPSHOT')
+    archiveExtension.set('jar')
 }
 
 repositories {
@@ -182,23 +184,23 @@ dependencies {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
 
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.0'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.0'
-    testCompile group:'org.mockito', name:'mockito-core', version:'2.10.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.0'
+    testImplementation group:'org.mockito', name:'mockito-core', version:'2.10.0'
 
-    testCompile group:'org.hamcrest', name:'hamcrest-junit', version:'2.0.0.0'
+    testImplementation group:'org.hamcrest', name:'hamcrest-junit', version:'2.0.0.0'
 
-    testCompile group:'org.apache.kafka', name:'kafka-streams', version:'1.0.0', classifier: 'test'
-    testCompile group:'org.apache.kafka', name:'kafka-clients', version:'1.0.0', classifier: 'test'
+    testImplementation group:'org.apache.kafka', name:'kafka-streams', version:'1.0.0', classifier: 'test'
+    testImplementation group:'org.apache.kafka', name:'kafka-clients', version:'1.0.0', classifier: 'test'
 
-    testCompile (group:'org.apache.kafka', name:'kafka_2.12', version:'1.0.0') {
+    testImplementation (group:'org.apache.kafka', name:'kafka_2.12', version:'1.0.0') {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
 
-    testCompile (group:'org.apache.kafka', name:'kafka_2.12', version:'1.0.0', classifier: 'test') {
+    testImplementation (group:'org.apache.kafka', name:'kafka_2.12', version:'1.0.0', classifier: 'test') {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
 
-    testCompile group: 'org.scala-lang', name: 'scala-library-all', version: '2.12.4'
+    testImplementation group: 'org.scala-lang', name: 'scala-library-all', version: '2.12.4'
 
 }
